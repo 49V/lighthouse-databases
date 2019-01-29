@@ -20,6 +20,7 @@ knex.select('*')
   .orWhere({last_name: name})
   .asCallback(function(error, rows) {
     if (error) return console.error(error);
-      helpers.displayResult(rows); 
+    helpers.displayResult(rows); 
     knex.destroy();
   });
+
