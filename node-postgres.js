@@ -2,7 +2,6 @@ const helpers = require("./helpers");
 const pg = require("pg");
 const settings = require("./settings"); // settings.json
 const name = process.argv.slice(2)
-console.log(name);
 
 const client = new pg.Client({
   user     : settings.user,
