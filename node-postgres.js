@@ -1,8 +1,31 @@
-const { Client } = require('pg')
-const client = new Client()
+const pg = require("pg");
+const settings = require("./settings"); // settings.json
 
-await client.connect()
+const client = new pg.Client({
+  user     : settings.user,
+  password : settings.password,
+  database : settings.database,
+  host     : settings.hostname,
+  port     : settings.port,
+  ssl      : settings.ssl
+});
 
-const res = await client.query('SELECT $1::text as message', ['Hello world!'])
-console.log(res.rows[0].message) // Hello world!
-await client.end()
+const query = {
+  text: 'SELECT * FROM famous_people WHERE first_name = $1 OR last_name = $1',
+  values: [process.argv[2]],
+  rowMode: 'array'
+}
+
+client.connect((err) => {
+  if (err) {
+    return console.error("Connection Error", err);
+  }
+  client.query(query, (err, result) => {
+    if (err) {
+      return console.error("error running query", err);
+    }
+    
+    console.log(result.rows); //output: 1
+    client.end();
+  });
+});
