@@ -31,12 +31,12 @@ client.connect((err) => {
 });
 
 function displayResult (rows) {
-  console.log(`Found ${rows.length} person(s) by the name of ${process.argv[2]}`);
+  console.log(`Found ${rows.length} person(s) by the name of '${process.argv[2]}'`);
   let count = 1;  
 
   rows.forEach(function(person) {
     const formattedDate = formatDate(person.birthdate)
-    console.log(`${count}: ${person.first_name} ${person.last_name}, born '${formattedDate}'`);
+    console.log(`- ${count}: ${person.first_name} ${person.last_name}, born '${formattedDate}'`);
     count++;
   });
 }
