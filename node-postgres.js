@@ -1,5 +1,7 @@
 const pg = require("pg");
 const settings = require("./settings"); // settings.json
+const name = process.argv.slice(2)
+console.log(name);
 
 const client = new pg.Client({
   user     : settings.user,
@@ -12,8 +14,7 @@ const client = new pg.Client({
 
 const query = {
   text: 'SELECT * FROM famous_people WHERE first_name = $1 OR last_name = $1',
-  values: [process.argv[2]],
-  rowMode: 'array'
+  values: name,
 }
 
 client.connect((err) => {
@@ -24,8 +25,18 @@ client.connect((err) => {
     if (err) {
       return console.error("error running query", err);
     }
-    
-    console.log(result.rows); //output: 1
+    displayResult(result.rows);    
     client.end();
   });
 });
+
+function displayResult (rows) {
+  console.log(`Found ${rows.length} person(s) by the name of ${process.argv[2]}`);
+  
+  rows.forEach(function(person) {
+    console.log(`${person.id}: ${person.first_name} ${person.last_name}, born '${person.birthdate}'`);
+  });
+
+
+}
+
