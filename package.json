@@ -1,0 +1,23 @@
+{
+  "name": "navy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node-postgres.js",
+  "dependencies": {
+    "pg": "^7.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gist.github.com/11065f0af7e2e865287a0157d2fb1c0f.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gist.github.com/11065f0af7e2e865287a0157d2fb1c0f"
+  },
+  "homepage": "https://gist.github.com/11065f0af7e2e865287a0157d2fb1c0f"
+}
