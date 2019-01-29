@@ -3,14 +3,7 @@ const [firstName, lastName, birthdate] = process.argv.slice(2);
 
 const knex = require('knex')({
   client: 'pg',
-  connection: {
-    host     : settings.hostname,
-    user     : settings.user,
-    password : settings.password,
-    database : settings.database,
-    port     : settings.port,
-    ssl      : settings.ssl
-  }
+  connection: settings
 });
 
 knex('famous_people').insert({
